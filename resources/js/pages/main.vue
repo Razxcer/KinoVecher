@@ -4,6 +4,8 @@
 
 <template>
     <Head title="Главная" />
+    Поздравляю!
+    ОНО ЖИВОЕ!!!!
 </template>
 
 <style scoped>
