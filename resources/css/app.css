@@ -9,6 +9,12 @@ html {
 
 @layer base {
     :root {
+
+        --white: #BDBDBD;
+        --gray: #8E8E8E;
+        --black: #333532;
+        --red: #B30001;
+
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;
         --card: 0 0% 100%;
@@ -45,6 +51,11 @@ html {
     }
 
     .dark {
+        --white: #BDBDBD;
+        --gray: #8E8E8E;
+        --black: #333532;
+        --red: #B30001;
+        
         --background: 0 0% 3.9%;
         --foreground: 0 0% 98%;
         --card: 0 0% 3.9%;
