@@ -10,7 +10,7 @@ html {
 @layer base {
     :root {
         --kino-black: #333532;
-        --kino-white: #BDBDBD;
+        --kino-white: #DCDCDC;
         --kino-gray: #8e8e8e;
         --kino-red: #b30001;
 
