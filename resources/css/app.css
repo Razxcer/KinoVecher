@@ -9,11 +9,10 @@ html {
 
 @layer base {
     :root {
-
-        --white: #BDBDBD;
-        --gray: #8E8E8E;
-        --black: #333532;
-        --red: #B30001;
+        --kino-black: #333532;
+        --kino-white: #DCDCDC;
+        --kino-gray: #8e8e8e;
+        --kino-red: #b30001;
 
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;

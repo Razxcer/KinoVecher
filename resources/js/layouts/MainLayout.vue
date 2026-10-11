@@ -5,15 +5,19 @@ import TheHeader from '@/components/TheHeader.vue';
 </script>
 
 <template>
-    <TheHeader/>
-    <main class="main">
-        <slot />
-    </main>
-    
+    <TheHeader class="header"/>
+    <div class="template">
+        <slot/>
+    </div>
 </template>
 
-<style>
-.main{
-    margin-top: 60px;
+<style scoped>
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.template{
 }
 </style>

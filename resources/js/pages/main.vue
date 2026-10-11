@@ -7,8 +7,9 @@
 
 <template>
     <Head title="Главная" />
-    Поздравляю!
-    ОНО ЖИВОЕ!!!!
+    <MainLayout>
+        
+    </MainLayout>
 </template>
 
 <style scoped>
