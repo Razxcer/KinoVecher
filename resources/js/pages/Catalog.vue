@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import FilterSidebar from '@/components/FilterSidebar.vue';
 import MovieCard from '@/components/MovieCard.vue';
 
-// Принимаем массив фильмов из бэкенда Laravel Sail
-defineProps<{
+// Принимаем массив фильмов из бэкенда Laravel
+const props = defineProps<{
   movies: Array<{
     id: number;
     title: string;
@@ -14,21 +15,53 @@ defineProps<{
     poster_url?: string;
   }>
 }>();
+
+// Объект со значениями активных фильтров
+const activeFilters = ref({
+  genre: 'Все жанры',
+  mood: 'Любое',
+  rating: 'Любой'
+});
+
+// Функция обновления фильтров при выборе в сайдбаре
+const handleFilterChange = (newFilters: { genre: string; mood: string; rating: string }) => {
+  activeFilters.value = newFilters;
+};
+
+// Логика фильтрации: отбираем только те фильмы, которые подходят под фильтр
+const filteredMovies = computed(() => {
+  return props.movies.filter(movie => {
+    if (activeFilters.value.genre !== 'Все жанры') {
+      // Проверяем, содержит ли строка жанров из БД выбранный жанр
+      const movieGenres = movie.genre.toLowerCase();
+      const selectedGenre = activeFilters.value.genre.toLowerCase();
+      if (!movieGenres.includes(selectedGenre)) return false;
+    }
+    return true;
+  });
+});
 </script>
 
 <template>
   <Head title="Каталог фильмов КиноВечер" />
-  <div class="flex p-6 gap-6 bg-[#0a0a0a] text-white min-h-screen">
-    <aside class="w-1/4">
-      <FilterSidebar />
-    </aside>
-    <main class="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max">
-      <!-- Цикл рендерит карточки из базы данных -->
-      <MovieCard 
-        v-for="movie in movies" 
-        :key="movie.id" 
-        :movie="movie" 
-      />
-    </main>
+  
+  <div class="w-full min-h-screen bg-[#0a0a0a] text-[#bdbdbd] p-6 flex justify-center items-start">
+    <div class="flex gap-6 w-full max-w-[1600px]">
+      
+      <!-- Каталог: ровно 5 колонок, фиксированные отступы -->
+      <main class="w-4/5 grid grid-cols-5 gap-4 content-start">
+        <MovieCard 
+          v-for="movie in filteredMovies" 
+          :key="movie.id" 
+          :movie="movie" 
+        />
+      </main>
+
+      <!-- Фильтр справа -->
+      <aside class="w-1/5 min-w-[240px] sticky top-6">
+        <FilterSidebar @filter-change="handleFilterChange" />
+      </aside>
+
+    </div>
   </div>
 </template>
