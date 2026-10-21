@@ -5,7 +5,7 @@
 
       <div class="modal-body">
         <div class="modal-poster">
-          <img src="../assets/picture1.jpg" alt="Постер" />
+          <img src="picture1.jpg" alt="Постер" />
         </div>
 
         <div class="modal-info">
