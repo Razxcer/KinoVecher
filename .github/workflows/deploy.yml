@@ -14,18 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Настраиваем Node.js и собираем фронтенд (Vue + Inertia)
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20' # Укажите вашу версию Node.js
-
-      - name: Install NPM dependencies & Build
-        run: |
-          npm ci
-          npm run build
-
-      # 3. Настраиваем PHP и устанавливаем зависимости Laravel
+      # 2. Настраиваем PHP и устанавливаем зависимости Laravel
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -35,6 +24,17 @@ jobs:
       - name: Install Composer dependencies
         run: |
           composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+
+      # 3. Настраиваем Node.js и собираем фронтенд (Vue + Inertia)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Укажите вашу версию Node.js
+
+      - name: Install NPM dependencies & Build
+        run: |
+          npm ci
+          npm run build
 
       # 4. Удаляем ненужные для продакшена файлы (опционально)
       - name: Clean up development files
