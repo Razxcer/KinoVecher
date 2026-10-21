@@ -29,7 +29,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Укажите вашу версию Node.js
+          node-version: '24' # Укажите вашу версию Node.js
 
       - name: Install NPM dependencies & Build
         run: |
