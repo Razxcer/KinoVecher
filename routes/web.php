@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\WatchLaterController;
 use App\Models\Movie;
 use Illuminate\Support\Facades\Route;
