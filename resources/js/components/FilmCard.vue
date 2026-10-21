@@ -3,7 +3,7 @@
     <div class="card">
       <div class="poster-container">
         <img
-          src="../assets/picture1.jpg"
+          src="picture1.jpg"
           alt="Человек-паук: Новый день"
           class="poster-img"
         />
