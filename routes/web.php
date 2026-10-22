@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('main');
+    return Inertia::render('Catalog', [
+        'movies' => Movie::all()
+    ]);
 })->name('home');
 
 Route::get('/catalog', function () {
@@ -15,14 +17,14 @@ Route::get('/catalog', function () {
     ]);
 })->name('catalog');
 
+// Route::get('dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('profile', function () {
+    return Inertia::render('Profile');
+})->middleware('auth')->name('profile');
 
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('watch-later', [WatchLaterController::class, 'index'])->name('watch-later');
 

@@ -42,8 +42,8 @@ jobs:
           rm -rf node_modules
           rm -f docker-compose.yml
 
-      # 5. Загружаем файлы на Beget по SFTP
-      - name: Deploy via SFTP
+      # 5. Загружаем файлы на Beget по FTP
+      - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.BEGET_HOST }}
@@ -63,17 +63,16 @@ jobs:
             .env
             
         # 6. Полная очистка БД и наполнение (Миграции + Сиды) через SSH
-    #   - name: Run Migrations and Seeders via SSH
-    #     uses: appleboy/ssh-action@v1.0.3
-    #     with:
-    #       host: ${{ secrets.BEGET_HOST }}
-    #       username: ${{ secrets.BEGET_USERNAME }}
-    #       password: ${{ secrets.BEGET_PASSWORD }}
-    #       port: 22
-    #       script: |
-    #         # Переходим в папку с проектом на Beget
-    #         cd ${{ secrets.BEGET_TARGET_DIR }}
-            
-    #         # Полностью сносим старые таблицы и накатываем новые со сбросом кеша и сидами
-    #         # Ключ --force обязателен, иначе Laravel заблокирует команду в production-режиме
-    #         php8.2 artisan migrate:fresh --seed --force
+      - name: Run Migrations and Seeders via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.BEGET_HOST }}
+          username: ${{ secrets.BEGET_USERNAME }}
+          password: ${{ secrets.BEGET_PASSWORD }}
+          port: 22
+          script: |
+            # Полностью сносим старые таблицы и накатываем новые со сбросом кеша и сидами
+            # Ключ --force обязателен, иначе Laravel заблокирует команду в production-режиме
+            php8.2 artisan optimize:clear
+            php8.2 artisan migrate:fresh --seed --force
+            php8.2 artisan optimize
