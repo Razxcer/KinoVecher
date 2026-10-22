@@ -3,6 +3,7 @@ import { ref, computed } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import FilterSidebar from '@/components/FilterSidebar.vue';
 import MovieCard from '@/components/MovieCard.vue';
+import MainLayout from '@/layouts/MainLayout.vue';
 
 // Принимаем массив фильмов из бэкенда Laravel
 const props = defineProps<{
@@ -44,24 +45,25 @@ const filteredMovies = computed(() => {
 
 <template>
   <Head title="Каталог фильмов КиноВечер" />
-  
-  <div class="w-full min-h-screen bg-[#0a0a0a] text-[#bdbdbd] p-6 flex justify-center items-start">
-    <div class="flex gap-6 w-full max-w-[1600px]">
-      
-      <!-- Каталог: ровно 5 колонок, фиксированные отступы -->
-      <main class="w-4/5 grid grid-cols-5 gap-4 content-start">
-        <MovieCard 
-          v-for="movie in filteredMovies" 
-          :key="movie.id" 
-          :movie="movie" 
-        />
-      </main>
+  <MainLayout>
+    <div class="w-full min-h-screen bg-[#0a0a0a] text-[#bdbdbd] p-6 flex justify-center items-start">
+      <div class="flex gap-6 w-full max-w-[1600px]">
+        
+        <!-- Каталог: ровно 5 колонок, фиксированные отступы -->
+        <main class="w-4/5 grid grid-cols-5 gap-4 content-start">
+          <MovieCard 
+            v-for="movie in filteredMovies" 
+            :key="movie.id" 
+            :movie="movie" 
+          />
+        </main>
 
-      <!-- Фильтр справа -->
-      <aside class="w-1/5 min-w-[240px] sticky top-6">
-        <FilterSidebar @filter-change="handleFilterChange" />
-      </aside>
+        <!-- Фильтр справа -->
+        <aside class="w-1/5 min-w-[240px] sticky top-6">
+          <FilterSidebar @filter-change="handleFilterChange" />
+        </aside>
 
+      </div>
     </div>
-  </div>
+  </MainLayout>
 </template>
