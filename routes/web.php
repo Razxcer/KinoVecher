@@ -19,6 +19,7 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+<<<<<<< HEAD
 
 
 Route::get('dashboard', function () {
@@ -29,6 +30,8 @@ Route::get('watch-later', [WatchLaterController::class, 'index'])->name('watch-l
 
 
 
+=======
+>>>>>>> origin/main
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

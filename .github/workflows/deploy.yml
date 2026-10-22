@@ -1,0 +1,81 @@
+name: Deploy to Beget
+
+on:
+  push:
+    branches:
+      - main # Название вашей основной ветки
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Клонируем репозиторий
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Настраиваем PHP и устанавливаем зависимости Laravel
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2' # Укажите версию PHP, которая выбрана в панели Beget
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql
+
+      - name: Install Composer dependencies
+        run: |
+          composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+
+      # 3. Настраиваем Node.js и собираем фронтенд (Vue + Inertia)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24' # Укажите вашу версию Node.js
+
+      - name: Install NPM dependencies & Build
+        run: |
+          npm ci
+          npm run build
+
+      # 4. Удаляем ненужные для продакшена файлы (опционально)
+      - name: Clean up development files
+        run: |
+          rm -rf node_modules
+          rm -f docker-compose.yml
+
+      # 5. Загружаем файлы на Beget по SFTP
+      - name: Deploy via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.BEGET_HOST }}
+          username: ${{ secrets.BEGET_USERNAME }}
+          password: ${{ secrets.BEGET_PASSWORD }}
+          port: 22 # Для SFTP используется порт 22
+          protocol: ftps
+          local-dir: ./
+          # Путь к вашей папке на Beget (например, username/site.ru/public_html/)
+          server-dir: ${{ secrets.BEGET_TARGET_DIR }} 
+          # Исключаем файлы, которые не должны перезаписывать боевое окружение
+          exclude: |
+            .git*
+            .github/**
+            storage/framework/cache/data/**
+            storage/framework/sessions/**
+            storage/framework/views/**
+            storage/logs/**
+            .env
+            
+        # 6. Полная очистка БД и наполнение (Миграции + Сиды) через SSH
+    #   - name: Run Migrations and Seeders via SSH
+    #     uses: appleboy/ssh-action@v1.0.3
+    #     with:
+    #       host: ${{ secrets.BEGET_HOST }}
+    #       username: ${{ secrets.BEGET_USERNAME }}
+    #       password: ${{ secrets.BEGET_PASSWORD }}
+    #       port: 22
+    #       script: |
+    #         # Переходим в папку с проектом на Beget
+    #         cd ${{ secrets.BEGET_TARGET_DIR }}
+            
+    #         # Полностью сносим старые таблицы и накатываем новые со сбросом кеша и сидами
+    #         # Ключ --force обязателен, иначе Laravel заблокирует команду в production-режиме
+    #         php8.2 artisan migrate:fresh --seed --force
