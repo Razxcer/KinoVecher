@@ -1,41 +1,39 @@
 <script setup lang="ts">
 import { ref, computed, watch, onUnmounted } from 'vue';
 import MainLayout from '@/layouts/MainLayout.vue';
-import { Head } from '@inertiajs/vue3';
-import FilmCard from '@/components/FilmCard.vue';
+import { Head, router } from '@inertiajs/vue3';
+// 1. Меняем импорт
+import MovieCard from '@/components/MovieCard.vue'; 
 import MovieModal from '@/components/MovieModal.vue';
 
-interface Film {
+export interface Film {
   id: number;
   title: string;
+  poster_url?: string | null;
+  genre?: string;
+  year?: number; // В MovieCard требуется number, но если в БД есть год, то всё сработает
+  country?: string;
 }
 
-// FilmCard пока без props — рендерим несколько "заглушек"
-const films = ref<Film[]>([
-  { id: 1, title: 'Человек-паук: Новый день' },
-  { id: 2, title: 'Человек-паук: Новый день' },
-  { id: 3, title: 'Человек-паук: Новый день' },
-]);
+const props = defineProps<{ films: Film[] }>();
 
 const selectedFilm = ref<Film | null>(null);
 const isModalOpen = computed(() => selectedFilm.value !== null);
 
-const openModal = (film: Film) => {
-  selectedFilm.value = film;
+const openModal = (film: Film) => (selectedFilm.value = film);
+const closeModal = () => (selectedFilm.value = null);
+
+const removeFromWatchLater = (film: Film) => {
+  router.delete(route('watch-later.destroy', { movie: film.id }), {
+    preserveScroll: true,
+    onSuccess: () => closeModal(),
+  });
 };
 
-const closeModal = () => {
-  selectedFilm.value = null;
-};
-
-// Блокируем скролл body, пока открыта модалка
 watch(isModalOpen, (open) => {
   document.body.style.overflow = open ? 'hidden' : '';
 });
-
-onUnmounted(() => {
-  document.body.style.overflow = '';
-});
+onUnmounted(() => (document.body.style.overflow = ''));
 </script>
 
 <template>
@@ -44,32 +42,36 @@ onUnmounted(() => {
     <div class="watch-later-page" :class="{ 'is-blurred': isModalOpen }">
       <h1 class="page-title">Смотреть позже</h1>
 
-      <div class="cards-grid">
-        <div
-          v-for="film in films"
-          :key="film.id"
-          class="card-cell"
-          @click="openModal(film)"
-        >
-          <FilmCard />
+      <div v-if="films.length === 0" class="empty-state">
+        Вы ещё не добавили ни один фильм.
+      </div>
+      <div v-else class="cards-grid">
+        <div v-for="film in films" :key="film.id" class="card-cell" @click="openModal(film)">
+          <!-- 2. Меняем компонент и передаем пропс movie -->
+          <MovieCard :movie="film" />
         </div>
       </div>
     </div>
 
-    <!-- Сам модал управляется MovieModal, close пробрасываем -->
-    <MovieModal v-if="selectedFilm" @close="closeModal" />
+    <MovieModal
+      v-if="selectedFilm"
+      :film="selectedFilm"
+      @close="closeModal"
+      @remove="removeFromWatchLater"
+    />
   </MainLayout>
 </template>
 
 <style scoped>
+/* Стили остаются без изменений */
 .watch-later-page {
   padding: 40px 20px;
   background: #fff;
   min-height: 100vh;
   transition: filter 0.35s ease;
   background-image: url("BG.jpg");
-  background-size: cover; 
-  background-position: center; 
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -98,5 +100,12 @@ onUnmounted(() => {
 
 .card-cell {
   cursor: pointer;
+}
+
+.empty-state {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  margin-top: 60px;
 }
 </style>
