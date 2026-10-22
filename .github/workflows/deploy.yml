@@ -51,8 +51,7 @@ jobs:
           password: ${{ secrets.BEGET_PASSWORD }}
           port: 21
           local-dir: ./
-          # Путь к вашей папке на Beget (например, username/site.ru/public_html/)
-          server-dir: ${{ secrets.BEGET_TARGET_DIR }} 
+          server-dir: ./
           # Исключаем файлы, которые не должны перезаписывать боевое окружение
           exclude: |
             .git*
