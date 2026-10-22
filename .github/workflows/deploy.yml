@@ -50,6 +50,7 @@ jobs:
           username: ${{ secrets.BEGET_USERNAME }}
           password: ${{ secrets.BEGET_PASSWORD }}
           port: 22 # Для SFTP используется порт 22
+          protocol: sftp
           local-dir: ./
           # Путь к вашей папке на Beget (например, username/site.ru/public_html/)
           server-dir: ${{ secrets.BEGET_TARGET_DIR }} 
