@@ -4,17 +4,17 @@
       <div class="poster-container">
         <img
           src="/picture1.jpg"
-          alt="Человек-паук: Новый день"
+          :alt="film.title"
           class="poster-img"
         />
       </div>
 
-      <div class="info-container">
-        <h2 class="movie-title">Человек-паук: Новый день</h2>
-        <p class="movie-genres">боевик, приключения, фэнтези, 2026, США</p>
+       <div class="info-container">
+        <h2 class="movie-title">{{ film.title }}</h2>
+        <p class="movie-genres">{{ film.genre }}, {{ film.year }}, {{ film.country }}</p>
 
         <div class="footer-info">
-          <span class="age-rating">12+</span>
+          <span class="age-rating">{{ film.ageRating }}</span>
           <div class="rating">
             <span class="star">★</span>
             <span class="score">8/10</span>
@@ -25,17 +25,28 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+defineProps<{
+  film: {
+    id: number;
+    title: string;
+    year: number;
+    genre: string;
+    country: string;
+    ageRating: string;
+    poster_url?: string;
+  }
+}>()
 </script>
 
 <style scoped>
+
 .card-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: #fff; 
-  padding: 20px;
   font-family: Arial, sans-serif;
 }
 
