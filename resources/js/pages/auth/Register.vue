@@ -24,6 +24,7 @@ const submit = () => {
 </script>
 
 <template>
+    <Head title="Регистрация" />
     <MainLayout>
         <div class="wrapper">
                 <form @submit.prevent="submit" class="auth-block">
@@ -77,8 +78,8 @@ const submit = () => {
                         </Button>
 
                         <div class="text-sm already-login-label flex justify-around pb-3">
-                        <p>Уже есть аккаунт?</p>
-                        <TextLink :href="route('login')" class="underline underline-offset-4 " style="color: var(--kino-white); text-decoration-color: var(--kino-white);" tabindex="6">Войти</TextLink>
+                            <p>Уже есть аккаунт?</p>
+                            <TextLink :href="route('login')" class="underline underline-offset-4 " style="color: var(--kino-white); text-decoration-color: var(--kino-white);" tabindex="6">Войти</TextLink>
                         </div>
                     </div>
 
@@ -101,6 +102,7 @@ const submit = () => {
     .wrapper{
         background-image: linear-gradient(135deg, rgba(20, 20, 20, 0.8) 0%, rgba(20, 20, 20, 0.8) 100%),
         url('./../../../../public/KatalogFilms.jpg');
+
         width: 100%;
         height: 1400px;
 
@@ -142,15 +144,18 @@ const submit = () => {
 
   .input-text{
     border-radius: 10px;
-    color: var(--kino-gray);
+    color: var(--kino-white);
     font-size: 16px;
-    background-color: var(--kino-black);
+    background-color: #565656;
   }
 
   .input-button{
     font-size: 18px;
     font-weight: bold;
     transition: 0.3s;
+    box-shadow: 2px 2px 5px #565656;
+    background-color: #b30000c7; 
+    color: var(--kino-white);
   }
 
   .input-button:hover{
