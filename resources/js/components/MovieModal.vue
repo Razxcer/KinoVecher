@@ -5,15 +5,18 @@
 
       <div class="modal-body">
         <div class="modal-poster">
-          <img src="picture1.jpg" 
-          :alt="film.title" />
+          <img
+          :src="film.poster_url"
+          :alt="film.title"
+          class="poster-img"
+        />
         </div>
 
        <div class="modal-info">
           <h1 class="modal-title">{{ film.title }}</h1>
 
           <p class="modal-description">
-            Одинокий и повзрослевший Питер Паркер полностью посвящает себя борьбе с преступностью в Нью-Йорке, поскольку 4 года назад после заклинания Доктора Стрэнджа мир и все близкие забыли его. Но с ростом угрозы и нагрузки на Человека-паука его способности претерпевают странные изменения...
+            {{ film.description }}
           </p>
 
           <h3 class="about-title">О фильме:</h3>
@@ -39,6 +42,7 @@ defineProps<{
   film: {
     id: number;
     title: string;
+    description: string;
     year: number;
     genre: string;
     country: string;

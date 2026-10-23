@@ -2,18 +2,17 @@
 import { ref, computed, watch, onUnmounted } from 'vue';
 import MainLayout from '@/layouts/MainLayout.vue';
 import { Head, router } from '@inertiajs/vue3';
-// 1. Меняем импорт
-import MovieCard from '@/components/MovieCard.vue'; 
 import MovieModal from '@/components/MovieModal.vue';
 import FilmCard from '@/components/FilmCard.vue';
 
 export interface Film {
   id: number;
   title: string;
-  poster_url?: string | null;
-  genre?: string;
-  year?: number; // В MovieCard требуется number, но если в БД есть год, то всё сработает
-  country?: string;
+  description: string;
+  year: number;
+  genre: string;
+  country: string;
+  poster_url?: string;
 }
 
 const props = defineProps<{ films: Film[] }>();
@@ -24,8 +23,9 @@ const isModalOpen = computed(() => selectedFilm.value !== null);
 const openModal = (film: Film) => (selectedFilm.value = film);
 const closeModal = () => (selectedFilm.value = null);
 
-const removeFromWatchLater = (film: Film) => {
-  router.delete(route('watch-later.destroy', { movie: film.id }), {
+const removeFromWatchLater = () => {
+  if (!selectedFilm.value) return;
+  router.delete(route('watch-later.destroy', { movie: selectedFilm.value.id }), {
     preserveScroll: true,
     onSuccess: () => closeModal(),
   });
@@ -47,19 +47,22 @@ onUnmounted(() => (document.body.style.overflow = ''));
         Вы ещё не добавили ни один фильм.
       </div>
       <div v-else class="cards-grid">
-        <div v-for="film in films" :key="film.id" class="card-cell" @click="openModal(film)">
-          <!-- 2. Меняем компонент и передаем пропс movie -->
-          <FilmCard :film="film" />
+        <div
+          v-for="film in films"
+          :key="film.id"
+          class="card-cell"
+          @click="openModal(film)"
+        >
+          <FilmCard :film="film" :delete-btn="true" />
         </div>
       </div>
     </div>
-
     <MovieModal
-      v-if="selectedFilm"
-      :film="selectedFilm"
-      @close="closeModal"
-      @remove="removeFromWatchLater"
-    />
+        v-if="selectedFilm"
+        :film="selectedFilm"
+        @close="closeModal"
+        @remove="removeFromWatchLater"
+      />
   </MainLayout>
 </template>
 
@@ -70,7 +73,7 @@ onUnmounted(() => (document.body.style.overflow = ''));
   background: #fff;
   min-height: 100vh;
   transition: filter 0.35s ease;
-  background-image: url("/BG.jpg");
+  background-image: url("BG.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
