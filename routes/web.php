@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\WatchLaterController;
 use App\Models\Movie;
+
+use App\Http\Controllers\WatchLaterController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -26,7 +27,15 @@ Route::get('profile', function () {
 })->middleware('auth')->name('profile');
 
 
-Route::get('watch-later', [WatchLaterController::class, 'index'])->name('watch-later');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/watch-later', [WatchLaterController::class, 'index'])
+        ->name('watch-later.index');
+    Route::post('/watch-later/{movie}', [WatchLaterController::class, 'store'])
+        ->name('watch-later.store');
+    Route::delete('/watch-later/{movie}', [WatchLaterController::class, 'destroy'])
+        ->name('watch-later.destroy');
+});
+
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
