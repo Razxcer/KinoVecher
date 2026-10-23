@@ -5,6 +5,7 @@ import { Head, router } from '@inertiajs/vue3';
 // 1. Меняем импорт
 import MovieCard from '@/components/MovieCard.vue'; 
 import MovieModal from '@/components/MovieModal.vue';
+import FilmCard from '@/components/FilmCard.vue';
 
 export interface Film {
   id: number;
@@ -48,7 +49,7 @@ onUnmounted(() => (document.body.style.overflow = ''));
       <div v-else class="cards-grid">
         <div v-for="film in films" :key="film.id" class="card-cell" @click="openModal(film)">
           <!-- 2. Меняем компонент и передаем пропс movie -->
-          <MovieCard :movie="film" />
+          <FilmCard :film="film" />
         </div>
       </div>
     </div>
@@ -69,7 +70,7 @@ onUnmounted(() => (document.body.style.overflow = ''));
   background: #fff;
   min-height: 100vh;
   transition: filter 0.35s ease;
-  background-image: url("BG.jpg");
+  background-image: url("/BG.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
