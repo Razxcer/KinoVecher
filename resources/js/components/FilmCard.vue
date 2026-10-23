@@ -3,13 +3,13 @@
     <div class="card">
       <div class="poster-container">
         <img
-          src="/picture1.jpg"
+          :src="film.poster_url"
           :alt="film.title"
           class="poster-img"
         />
       </div>
 
-       <div class="info-container">
+      <div class="info-container">
         <h2 class="movie-title">{{ film.title }}</h2>
         <p class="movie-genres">{{ film.genre }}, {{ film.year }}, {{ film.country }}</p>
 
@@ -20,6 +20,8 @@
             <span class="score">8/10</span>
           </div>
         </div>
+        <button v-if="addBtn" class="card-button">Посмотрю позже</button>
+        <button v-if="deleteBtn" class="card-button">Не интересно</button>
       </div>
     </div>
   </div>
@@ -30,12 +32,15 @@ defineProps<{
   film: {
     id: number;
     title: string;
+    description: string;
     year: number;
     genre: string;
     country: string;
     ageRating: string;
     poster_url?: string;
-  }
+  },
+  deleteBtn: boolean,
+  addBtn: boolean,
 }>()
 </script>
 
@@ -115,5 +120,13 @@ defineProps<{
 
 .score {
   font-size: 16px;
+}
+
+.card-button{
+  width: 100%;
+  background-color: var(--kino-red);
+  border-radius: 10px;
+  font-weight: 600;
+  color: var(--kino-black);
 }
 </style>
