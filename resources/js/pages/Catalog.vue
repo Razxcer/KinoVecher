@@ -4,12 +4,14 @@ import { Head } from '@inertiajs/vue3';
 import FilterSidebar from '@/components/FilterSidebar.vue';
 import MovieCard from '@/components/MovieCard.vue';
 import MainLayout from '@/layouts/MainLayout.vue';
+import FilmCard from '@/components/FilmCard.vue';
 
 // Принимаем массив фильмов из бэкенда Laravel
 const props = defineProps<{
   movies: Array<{
     id: number;
     title: string;
+    description: string;
     year: number;
     genre: string;
     country: string;
@@ -44,17 +46,17 @@ const filteredMovies = computed(() => {
 </script>
 
 <template>
-  <Head title="Каталог фильмов КиноВечер" />
+  <Head title="Каталог фильмов" />
   <MainLayout>
     <div class="w-full min-h-screen bg-[#0a0a0a] text-[#bdbdbd] p-6 flex justify-center items-start">
       <div class="flex gap-6 w-full max-w-[1600px]">
         
         <!-- Каталог: ровно 5 колонок, фиксированные отступы -->
         <main class="w-4/5 grid grid-cols-5 gap-4 content-start">
-          <MovieCard 
-            v-for="movie in filteredMovies" 
-            :key="movie.id" 
-            :movie="movie" 
+          <FilmCard 
+            v-for="movie in filteredMovies"
+            :film="movie"
+            :add-btn="true"
           />
         </main>
 

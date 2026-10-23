@@ -3,40 +3,61 @@
     <div class="card">
       <div class="poster-container">
         <img
-          src="/picture1.jpg"
+          :src="film.poster_url"
           :alt="film.title"
           class="poster-img"
         />
       </div>
 
-       <div class="info-container">
+      <div class="info-container">
         <h2 class="movie-title">{{ film.title }}</h2>
         <p class="movie-genres">{{ film.genre }}, {{ film.year }}, {{ film.country }}</p>
 
         <div class="footer-info">
-          <span class="age-rating">{{ film.ageRating }}</span>
+          <!-- <span class="age-rating">{{ film.ageRating }}</span> -->
           <div class="rating">
             <span class="star">★</span>
             <span class="score">8/10</span>
           </div>
         </div>
+        <button v-if="addBtn" @click="createWatchLater" class="card-button">Посмотрю позже</button>
+        <button v-if="deleteBtn" @click="deleteWatchLater" class="card-button">Не интересно</button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
+import { router } from '@inertiajs/vue3'
+
+const props = defineProps<{
   film: {
     id: number;
     title: string;
+    description: string;
     year: number;
     genre: string;
     country: string;
-    ageRating: string;
+    // ageRating: string;
     poster_url?: string;
-  }
+  };
+  deleteBtn?: boolean;
+  addBtn?: boolean;
 }>()
+
+const createWatchLater = () => {
+  router.post(`/watch-later/${props.film.id}`, { }, {
+    preserveScroll: true,
+  })
+}
+
+const deleteWatchLater = () => {
+  router.delete(`/watch-later/${props.film.id}`, {
+    preserveScroll: true,
+  })
+}
+
+
 </script>
 
 <style scoped>
@@ -45,8 +66,6 @@ defineProps<{
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: #fff; 
   font-family: Arial, sans-serif;
 }
 
@@ -115,5 +134,13 @@ defineProps<{
 
 .score {
   font-size: 16px;
+}
+
+.card-button{
+  width: 100%;
+  background-color: var(--kino-red);
+  border-radius: 10px;
+  font-weight: 600;
+  color: var(--kino-black);
 }
 </style>
