@@ -5,23 +5,24 @@
 
       <div class="modal-body">
         <div class="modal-poster">
-          <img src="picture1.jpg" alt="Постер" />
+          <img src="picture1.jpg" 
+          :alt="film.title" />
         </div>
 
-        <div class="modal-info">
-          <h1 class="modal-title">Человек-паук: Новый день</h1>
+       <div class="modal-info">
+          <h1 class="modal-title">{{ film.title }}</h1>
 
           <p class="modal-description">
-            Одинокий и повзрослевший Питер Паркер полностью посвящает себя борьбе с преступностью в Нью-Йорке, поскольку 4 года назад после заклинания Доктора Стрэнджа мир и все близкие забыли его. Но с ростом угрозы и нагрузки на Человека-паука его способности претерпевают странные изменения, способные поставить под угрозу его существование. Тем временем в городе случается новая цепочка преступлений, которая приводит к появлению одного из самых опасных противников в жизни Питера.
+            Одинокий и повзрослевший Питер Паркер полностью посвящает себя борьбе с преступностью в Нью-Йорке, поскольку 4 года назад после заклинания Доктора Стрэнджа мир и все близкие забыли его. Но с ростом угрозы и нагрузки на Человека-паука его способности претерпевают странные изменения...
           </p>
 
           <h3 class="about-title">О фильме:</h3>
 
           <ul class="movie-details">
-            <li><span class="label">Год производства:</span> 2026</li>
-            <li><span class="label">Страна:</span> США</li>
-            <li><span class="label">Жанр:</span> боевик, приключения, фэнтези</li>
-            <li><span class="label">Возрастной рейтинг:</span> 12+</li>
+            <li><span class="label">Год производства:</span> {{ film.year }}</li>
+            <li><span class="label">Страна:</span> {{ film.country }}</li>
+            <li><span class="label">Жанр:</span> {{ film.genre }}</li>
+            <li><span class="label">Возрастной рейтинг:</span> {{ film.ageRating }}</li>
             <li><span class="label">Оценка:</span> 8/10</li>
           </ul>
         </div>
@@ -30,9 +31,21 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const emit = defineEmits(['close']);
 const closeModal = () => emit('close');
+
+defineProps<{
+  film: {
+    id: number;
+    title: string;
+    year: number;
+    genre: string;
+    country: string;
+    ageRating: string
+    poster_url?: string;
+  }
+}>()
 </script>
 
 <style scoped>

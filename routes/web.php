@@ -30,3 +30,7 @@ Route::get('watch-later', [WatchLaterController::class, 'index'])->name('watch-l
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
+
+Route::get('/cardfilm', function () {
+    return Inertia::render('CardFilm');
+});
