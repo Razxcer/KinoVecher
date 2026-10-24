@@ -20,8 +20,12 @@
             <span class="score">8/10</span>
           </div>
         </div>
-        <button v-if="addBtn" @click="createWatchLater" class="card-button">Посмотрю позже</button>
-        <button v-if="deleteBtn" @click="deleteWatchLater" class="card-button">Не интересно</button>
+        <button v-if="addBtn" @click.stop="createWatchLater" class="card-button">
+          Посмотрю позже
+        </button>
+        <button v-if="deleteBtn" @click.stop="deleteWatchLater" class="card-button">
+          Не интересно
+        </button>
       </div>
     </div>
   </div>
