@@ -73,7 +73,7 @@ onUnmounted(() => (document.body.style.overflow = ''));
   background: #fff;
   min-height: 100vh;
   transition: filter 0.35s ease;
-  background-image: url("BG.jpg");
+  background-image: url("/BG.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -82,7 +82,7 @@ onUnmounted(() => (document.body.style.overflow = ''));
 .watch-later-page.is-blurred {
   pointer-events: none;
   background-image: linear-gradient(135deg, rgba(20, 20, 20, 0.7) 0%, rgba(20, 20, 20, 0.7) 100%),
-        url('./../../../../public/BG.jpg');
+        url('/BG.jpg');
 }
 
 .page-title {
