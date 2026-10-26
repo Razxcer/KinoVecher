@@ -1,7 +1,5 @@
 <?php
-
 use App\Models\Movie;
-
 use App\Http\Controllers\WatchLaterController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -43,3 +41,5 @@ require __DIR__.'/auth.php';
 Route::get('/cardfilm', function () {
     return Inertia::render('CardFilm');
 });
+
+Route::get('/api/internal/random-movie', fn () => Movie::inRandomOrder()->first()); //Получение рандомного фильма

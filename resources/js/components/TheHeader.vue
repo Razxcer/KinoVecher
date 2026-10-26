@@ -1,10 +1,32 @@
 <script setup>
 import { usePage, Link } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import axios from 'axios';
+import MovieModal from './MovieModal.vue';
 
 const page = usePage();
 // Проверяем, авторизован ли пользователь
 const isAuth = computed(() => !!page.props.auth.user);
+const favoritesCount = computed(() => page.props.favoritesCount);
+const movie = ref(null);
+const isModalOpen = ref(false);
+const searchQuery = ref('');
+
+const handleSearch = () => {
+  if (!searchQuery.value.trim()) return;
+
+  router.get('/', { search: searchQuery.value }, {
+    preserveState: true // Не перезагружает страницу полностью, если мы уже на /movies
+  });
+};
+
+const fetchRandomMovie = async () => {
+  const response = await axios.get('/api/internal/random-movie');
+  movie.value = response.data;
+  isModalOpen.value = true;
+};
+
+
 
 </script>
 
@@ -17,9 +39,19 @@ const isAuth = computed(() => !!page.props.auth.user);
     </div>
     </Link>
 
+    <div class="kinovecher-label">
+      KINOVECHER
+    </div>
+
     <!-- 2. Поле поиска -->
     <div class="search-container">
-      <input type="text" placeholder="" class="search-input" />
+      <input 
+      type="text" 
+      placeholder="Поиск фильмов..." 
+      class="search-input"
+      v-model="searchQuery"
+      @keydown.enter="handleSearch"
+       />
       <!-- Аккуратная SVG лупа -->
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="11" cy="11" r="8"></circle>
@@ -29,20 +61,21 @@ const isAuth = computed(() => !!page.props.auth.user);
 
     <!-- 3. Блок с кнопками -->
     <div class="buttons-group">
-      <Link href="#">
-      <button class="nav-btn">Случайный<br>фильм</button>
-      </Link>
+      <button @click="fetchRandomMovie" class="nav-btn">Случайный<br>фильм</button>
       <div class="divider"></div>
       <Link href="/watch-later">
       <button class="nav-btn">Смотреть<br>позже</button>
       </Link>
+      <span v-if="favoritesCount > 0" class="badge">
+        {{ favoritesCount }}
+      </span>
     </div>
 
     <!-- 4. Иконка профиля -->
     <Link href="/profile" v-if="isAuth">
     <div class="profile-icon">
   <!-- Минималистичный SVG силуэт -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="var(--kino-white)" class="bi bi-person-check" viewBox="0 0 16 16">
             <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
             <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
         </svg>
@@ -52,12 +85,18 @@ const isAuth = computed(() => !!page.props.auth.user);
     <Link href="/login" v-else>
     <div class="profile-icon">
   <!-- Минималистичный SVG силуэт -->
-       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="var(--kino-white)" class="bi bi-person-add" viewBox="0 0 16 16">
             <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
             <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
         </svg>
     </div>
     </Link>
+
+    <MovieModal
+        v-if="isModalOpen"
+        :film="movie"
+        @close="isModalOpen=false"
+      />
   </header>
 </template>
 
@@ -65,7 +104,7 @@ const isAuth = computed(() => !!page.props.auth.user);
 /* Шапка: размеры плавно подстраиваются под ширину экрана */
 .header {
     width: 100%;
-    height: 60px;
+    min-height: 65px;
     z-index: 9999;
 
 
@@ -95,13 +134,22 @@ const isAuth = computed(() => !!page.props.auth.user);
   object-fit: contain;
 }
 
+.kinovecher-label{
+  width: 270px;
+  font-size: 20px;
+  color: var(--kino-black);
+  font-weight: bold;
+  text-align: center;
+}
+
 /* Поиск занимает свободное место, но не вытесняет остальные элементы */
 .search-container {
   position: relative;
   flex: 1 1 180px;
   min-width: 0;
-  max-width: 400px;
+  max-width: 600px;
   transition: transform 0.2s;
+  color: var(--kino-black);
 }
 
 .search-container:hover {
@@ -157,16 +205,31 @@ const isAuth = computed(() => !!page.props.auth.user);
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  line-height: 1.2;
+  line-height: 1.1;
   white-space: nowrap;
   transition: transform 0.2s;
 
   height: 50px;
 }
 
+.badge{
+  width: 20px;
+  height: 20px;
+  margin-left: -25px;
+  margin-top: -40px;
+  border-radius: 1.5em;
+  text-align: center;
+  line-height: 1.2;
+  background-color: var(--kino-red);
+  color: var(--kino-white);
+  font-weight: 600;
+  z-index: 9000;
+}
+
 .nav-btn:hover {
   transform: scale(1.03);
 }
+
 
 .divider {
   width: 3px;
