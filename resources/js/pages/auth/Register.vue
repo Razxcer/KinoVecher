@@ -101,12 +101,12 @@ const submit = () => {
 
     .wrapper{
         background-image: linear-gradient(135deg, rgba(20, 20, 20, 0.8) 0%, rgba(20, 20, 20, 0.8) 100%),
-        url('./../../../../public/KatalogFilms.jpg');
+        url('/KatalogFilms-blur.jpg');
 
         width: 100%;
         height: 1400px;
 
-        background-size: cover, 50% 100%;
+        background-size: cover, 100% 80%;
         background-repeat: repeat;
 
         animation: bg-move 100s linear infinite;
@@ -119,7 +119,7 @@ const submit = () => {
     .auth-block{
     width: 600px;
     height: min-content;
-    margin-top: calc((100vh / 2) - (500px / 2) - 60px);
+    margin-top: calc((100vh / 2) - (500px / 2) - 30px);
     background-color: rgba(150, 150, 150, 0.85);
     border-radius: 1.5em;
     display: flex;
