@@ -48,7 +48,7 @@ const filteredMovies = computed(() => {
 <template>
   <Head title="Каталог фильмов" />
   <MainLayout>
-    <div class="w-full min-h-screen bg-[#0a0a0a] text-[#bdbdbd] p-6 flex justify-center items-start">
+    <div class="w-full min-h-screen bg-[#0a0a0a] text-[#bdbdbd] p-6 flex justify-center items-start" style="background-color: var(--kino-black);">
       <div class="flex gap-6 w-full max-w-[1600px]">
         
         <!-- Каталог: ровно 5 колонок, фиксированные отступы -->
