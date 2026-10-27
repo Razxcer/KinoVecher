@@ -11,6 +11,7 @@
         <FilmCard 
         :film="movie" 
         :addBtn="true" 
+        :deleteBtn="true"
       />
       </div>
     </div>
@@ -21,6 +22,7 @@
       :film="selectedMovie" 
       @close="selectedMovie = null" 
       :addBtn="true" 
+      :deleteBtn="true"
     />
   </div>
 </template>

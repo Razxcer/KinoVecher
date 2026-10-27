@@ -12,8 +12,13 @@
               class="poster-img"
             />
           </div>
+          
           <button v-if="addBtn" @click.stop="createWatchLater" class="card-button">
             Посмотрю позже
+          </button>
+          
+          <button v-if="deleteBtn" @click.stop="deleteWatchLater" class="card-button">
+            Не интересно
           </button>
         </div>
 
@@ -54,12 +59,20 @@ const props = defineProps<{
     poster_url?: string;
   };
   addBtn?: boolean; 
+  deleteBtn?: boolean;
 }>()
 
 const emit = defineEmits(['close']);
 const closeModal = () => emit('close');
+
 const createWatchLater = () => {
   router.post(`/watch-later/${props.film.id}`, { }, {
+    preserveScroll: true,
+  })
+}
+
+const deleteWatchLater = () => {
+  router.delete(`/watch-later/${props.film.id}`, {
     preserveScroll: true,
   })
 }
@@ -180,6 +193,7 @@ const createWatchLater = () => {
   font-weight: 700;
   margin-right: 5px;
 }
+
 .card-button {
   width: 100%;
   padding: 12px;
