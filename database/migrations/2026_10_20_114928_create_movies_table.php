@@ -10,11 +10,14 @@ return new class extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->string('title');                  // Название фильма
-            $table->text('poster_url')->nullable();  // URL картинки-постера
-            $table->string('genre');                  // Жанры
-            $table->integer('year');                  // Год релиза
-            $table->string('country');                // Страна производства
+            $table->string('title');
+            $table->text('description');
+            $table->text('poster_url')->nullable();
+            $table->string('genre');
+            $table->integer('year');
+            $table->string('country');
+            $table->string('age_rating')->default('0+');
+            $table->string('mood')->default('Любое');
             $table->timestamps();
         });
     }

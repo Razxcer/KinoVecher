@@ -1,67 +1,79 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { Head } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { Head, router } from '@inertiajs/vue3';
 import FilterSidebar from '@/components/FilterSidebar.vue';
-import MovieCard from '@/components/MovieCard.vue';
+import MainLayout from '@/layouts/MainLayout.vue';
+import FilmCard from '@/components/FilmCard.vue';
 
-// Принимаем массив фильмов из бэкенда Laravel
 const props = defineProps<{
   movies: Array<{
     id: number;
     title: string;
+    description: string;
     year: number;
     genre: string;
     country: string;
+    age_rating: string;
+    mood: string;
     poster_url?: string;
-  }>
+  }>;
+ 
+  filters?: {
+    search?: string;
+    genre?: string;
+    mood?: string;
+    rating?: string;
+  };
 }>();
 
-// Объект со значениями активных фильтров
-const activeFilters = ref({
-  genre: 'Все жанры',
-  mood: 'Любое',
-  rating: 'Любой'
+
+const currentFilters = ref({
+  genre: props.filters?.genre || 'Все жанры',
+  mood: props.filters?.mood || 'Любое',
+  rating: props.filters?.rating || 'Любой'
 });
 
-// Функция обновления фильтров при выборе в сайдбаре
-const handleFilterChange = (newFilters: { genre: string; mood: string; rating: string }) => {
-  activeFilters.value = newFilters;
+const updateFilters = () => {
+  router.get('/catalog', {
+    search: props.filters?.search || '', // Сохраняем строку поиска из чужой шапки
+    genre: currentFilters.value.genre,
+    mood: currentFilters.value.mood,
+    rating: currentFilters.value.rating
+  }, {
+    preserveState: true,
+    replace: true
+  });
 };
 
-// Логика фильтрации: отбираем только те фильмы, которые подходят под фильтр
-const filteredMovies = computed(() => {
-  return props.movies.filter(movie => {
-    if (activeFilters.value.genre !== 'Все жанры') {
-      // Проверяем, содержит ли строка жанров из БД выбранный жанр
-      const movieGenres = movie.genre.toLowerCase();
-      const selectedGenre = activeFilters.value.genre.toLowerCase();
-      if (!movieGenres.includes(selectedGenre)) return false;
-    }
-    return true;
-  });
-});
+const handleFilterChange = (newFilters: { genre: string; mood: string; rating: string }) => {
+  currentFilters.value = newFilters;
+  updateFilters();
+};
 </script>
 
 <template>
-  <Head title="Каталог фильмов КиноВечер" />
-  
-  <div class="w-full min-h-screen bg-[#0a0a0a] text-[#bdbdbd] p-6 flex justify-center items-start">
-    <div class="flex gap-6 w-full max-w-[1600px]">
-      
-      <!-- Каталог: ровно 5 колонок, фиксированные отступы -->
-      <main class="w-4/5 grid grid-cols-5 gap-4 content-start">
-        <MovieCard 
-          v-for="movie in filteredMovies" 
-          :key="movie.id" 
-          :movie="movie" 
-        />
-      </main>
+  <Head title="Каталог фильмов" />
+  <MainLayout>
+    <div class="w-full min-h-screen bg-[#0a0a0a] text-[#bdbdbd] p-6 flex flex-col items-center" style="background-color: var(--kino-black);">
+      <div class="flex gap-6 w-full max-w-[1600px] mt-4">
+        
+        <main class="w-4/5 grid grid-cols-5 gap-4 content-start">
+          <FilmCard 
+            v-for="movie in props.movies"
+            :key="movie.id"
+            :film="movie"
+            :add-btn="true"
+          />
+          <div v-if="props.movies.length === 0" class="col-span-5 text-center text-gray-500 py-12">
+            Фильмы по выбранным критериям не найдены.
+          </div>
+        </main>
 
-      <!-- Фильтр справа -->
-      <aside class="w-1/5 min-w-[240px] sticky top-6">
-        <FilterSidebar @filter-change="handleFilterChange" />
-      </aside>
+        <aside class="w-1/5 min-w-[240px] sticky top-6">
+          <FilterSidebar :initial-filters="currentFilters" @filter-change="handleFilterChange" />
+        </aside>
 
+      </div>
     </div>
-  </div>
+  </MainLayout>
 </template>
