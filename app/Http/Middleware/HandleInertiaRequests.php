@@ -45,6 +45,12 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'favoritesCount' => function () use ($request) {
+                if (!$request->user()) {
+                    return 0;
+                }
+                else return $request->user()->watchLater()->count(); 
+            },
         ]);
     }
 }

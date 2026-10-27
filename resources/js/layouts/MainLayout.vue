@@ -19,6 +19,6 @@ import TheHeader from '@/components/TheHeader.vue';
 }
 
 .template{
-    margin-top: 60px;
+    margin-top: 65px;
 }
 </style>

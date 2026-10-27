@@ -4,6 +4,8 @@
 
 body,
 html {
+    background-color: var(--kino-black);
+    color: var(--kino-white);
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
@@ -14,8 +16,8 @@ html {
         --kino-gray: #8e8e8e;
         --kino-red: #b30001;
 
-        --background: 0 0% 100%;
-        --foreground: 0 0% 3.9%;
+        --background: var(--kino-black);
+        --foreground: var(--kino-white);
         --card: 0 0% 100%;
         --card-foreground: 0 0% 3.9%;
         --popover: 0 0% 100%;
@@ -50,8 +52,8 @@ html {
     }
 
     .dark {
-        --background: 0 0% 3.9%;
-        --foreground: 0 0% 98%;
+        --background: var(--kino-black);
+        --foreground: var(--kino-white);
         --card: 0 0% 3.9%;
         --card-foreground: 0 0% 98%;
         --popover: 0 0% 3.9%;
