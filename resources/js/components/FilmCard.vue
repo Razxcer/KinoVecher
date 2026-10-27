@@ -65,60 +65,78 @@ const deleteWatchLater = () => {
 
 <style scoped>
 .card-wrapper {
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #fff; 
-  font-family: Arial, sans-serif;
 }
 
 .card {
   background: #bdbdbd;
   border-radius: 24px;
-  padding: 15px;
+  padding: 15px 15px 20px 15px; 
   width: 100%;
-  max-width: 350px;
+  min-height: 600px; 
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .poster-container {
   border-radius: 16px;
   overflow: hidden;
-  margin-bottom: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  height: 360px; 
+  flex-shrink: 0;
+  background-color: #a0a0a0;
 }
 
 .poster-img {
   width: 100%;
+  height: 100%;
+  object-fit: cover; 
   display: block;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
 }
 
 .info-container {
   color: #333532;
-  padding: 0 5px;
+  padding: 12px 5px 0 5px; 
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .movie-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
-  margin: 0 0 5px;
+  margin: 0 0 6px;
   line-height: 1.2;
+  color: #333532;
+  height: 48px; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .movie-genres {
-  font-size: 14px;
+  font-size: 15px;
   color: #5e5e5e;   
-  margin: 0 0 15px;
+  margin: 0 0 10px;
+  line-height: 1.3;
+  height: 40px; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .footer-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 15px;
+  padding-bottom: 8px;
+  /* Прижимаем к низу */
+  margin-top: auto; 
 }
 
 .age-rating {
@@ -145,18 +163,23 @@ const deleteWatchLater = () => {
 
 .card-button {
   width: 100%;
-  margin-top: 10px;
-  padding: 8px;
+  padding: 10px;
   background-color: var(--kino-red, #b30001); 
   border: none;
   border-radius: 10px;
-  font-weight: 600;
-  color: var(--kino-black, #fff);
+  font-weight: 700;
+  font-size: 18px;
+  color: #bdbdbd; 
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-top: 5px; 
 }
 
 .card-button:hover {
-  opacity: 0.8;
+  background-color: #d40001;
+  color: #ffffff; 
+  box-shadow: 0 4px 10px rgba(179, 0, 1, 0.4); 
+  transform: translateY(-2px); 
 }
 </style>

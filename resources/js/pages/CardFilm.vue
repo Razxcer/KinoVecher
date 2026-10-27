@@ -8,7 +8,10 @@
         @click="openModal(movie)" 
         class="clickable-card"
       >
-        <FilmCard :film="movie" />
+        <FilmCard 
+        :film="movie" 
+        :addBtn="true" 
+      />
       </div>
     </div>
 
