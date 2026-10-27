@@ -20,6 +20,7 @@
       v-if="selectedMovie" 
       :film="selectedMovie" 
       @close="selectedMovie = null" 
+      :addBtn="true" 
     />
   </div>
 </template>

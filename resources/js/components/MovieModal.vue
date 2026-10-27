@@ -4,20 +4,24 @@
       <button class="close-btn" @click="closeModal">✕</button>
 
       <div class="modal-body">
-        <div class="modal-poster">
-          <img
-            :src="film.poster_url || '/picture1.jpg'"
-            :alt="film.title"
-            class="poster-img"
-          />
+        <div class="modal-poster-col">
+          <div class="modal-poster">
+            <img
+              :src="film.poster_url || '/picture1.jpg'"
+              :alt="film.title"
+              class="poster-img"
+            />
+          </div>
+          <button v-if="addBtn" @click.stop="createWatchLater" class="card-button">
+            Посмотрю позже
+          </button>
         </div>
 
-       <div class="modal-info">
+        <div class="modal-info">
           <h1 class="modal-title">{{ film.title }}</h1>
 
           <p class="modal-description">
-            {{ film.description || 'Описание пока отсутствует...' }}
-            Одинокий и повзрослевший Питер Паркер полностью посвящает себя борьбе с преступностью в Нью-Йорке, поскольку 4 года назад после заклинания Доктора Стрэнджа мир и все близкие забыли его. Но с ростом угрозы и нагрузки на Человека-паука его способности претерпевают странные изменения...
+          {{ film.description || 'Одинокий и повзрослевший Питер Паркер полностью посвящает себя борьбе с преступностью в Нью-Йорке, поскольку 4 года назад после заклинания Доктора Стрэнджа мир и все близкие забыли его. Но с ростом угрозы и нагрузки на Человека-паука его способности претерпевают странные изменения...' }}
           </p>
 
           <h3 class="about-title">О фильме:</h3>
@@ -36,10 +40,9 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(['close']);
-const closeModal = () => emit('close');
+import { router } from '@inertiajs/vue3'
 
-defineProps<{
+const props = defineProps<{
   film: {
     id: number;
     title: string;
@@ -49,8 +52,17 @@ defineProps<{
     country: string;
     ageRating: string;
     poster_url?: string;
-  }
+  };
+  addBtn?: boolean; 
 }>()
+
+const emit = defineEmits(['close']);
+const closeModal = () => emit('close');
+const createWatchLater = () => {
+  router.post(`/watch-later/${props.film.id}`, { }, {
+    preserveScroll: true,
+  })
+}
 </script>
 
 <style scoped>
@@ -115,8 +127,11 @@ defineProps<{
   gap: 30px;
 }
 
-.modal-poster {
+.modal-poster-col {
   flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .modal-poster img {
@@ -165,6 +180,26 @@ defineProps<{
   font-weight: 700;
   margin-right: 5px;
 }
+.card-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--kino-red, #b30001); 
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #bdbdbd; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.card-button:hover {
+  background-color: #d40001;
+  color: #ffffff; 
+  box-shadow: 0 4px 10px rgba(179, 0, 1, 0.4); 
+  transform: translateY(-2px); 
+}
 
 @media (max-width: 768px) {
   .modal-body {
@@ -172,11 +207,11 @@ defineProps<{
     padding: 20px;
     gap: 20px;
   }
-
-  .modal-poster {
+  .modal-poster-col {
     flex: auto;
     max-width: 250px;
     margin: 0 auto;
+    width: 100%;
   }
 }
 </style>
