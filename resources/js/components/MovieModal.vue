@@ -10,8 +10,6 @@
             :alt="film.title"
             class="poster-img"
           />
-          <img src="picture1.jpg" 
-          :alt="film.title" />
         </div>
 
        <div class="modal-info">

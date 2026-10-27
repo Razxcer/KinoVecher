@@ -2,18 +2,14 @@
   <div class="card-wrapper">
     <div class="card">
       <div class="poster-container">
-
-     <img
-          :src="film.poster_url || '/picture1.jpg'"
         <img
-          src="/picture1.jpg"
+          :src="film.poster_url"
           :alt="film.title"
           class="poster-img"
         />
       </div>
 
       <div class="info-container">
-       <div class="info-container">
         <h2 class="movie-title">{{ film.title }}</h2>
         <p class="movie-genres">{{ film.genre }}, {{ film.year }}, {{ film.country }}</p>
 
@@ -68,7 +64,6 @@ const deleteWatchLater = () => {
 </script>
 
 <style scoped>
-
 .card-wrapper {
   display: flex;
   justify-content: center;
@@ -97,6 +92,8 @@ const deleteWatchLater = () => {
 .poster-img {
   width: 100%;
   display: block;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
 }
 
 .info-container {
@@ -113,7 +110,7 @@ const deleteWatchLater = () => {
 
 .movie-genres {
   font-size: 14px;
-  color: #5e5e5e;   /*Немного темнее чем  8E8E8E, чтобы было видно текст*/
+  color: #5e5e5e;   
   margin: 0 0 15px;
 }
 
@@ -121,6 +118,7 @@ const deleteWatchLater = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .age-rating {
@@ -145,12 +143,20 @@ const deleteWatchLater = () => {
   font-size: 16px;
 }
 
-
-.card-button{
+.card-button {
   width: 100%;
-  background-color: var(--kino-red);
+  margin-top: 10px;
+  padding: 8px;
+  background-color: var(--kino-red, #b30001); 
+  border: none;
   border-radius: 10px;
   font-weight: 600;
-  color: var(--kino-black);
+  color: var(--kino-black, #fff);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.card-button:hover {
+  opacity: 0.8;
 }
 </style>
