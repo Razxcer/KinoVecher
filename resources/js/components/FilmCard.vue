@@ -2,14 +2,18 @@
   <div class="card-wrapper">
     <div class="card">
       <div class="poster-container">
+
      <img
           :src="film.poster_url || '/picture1.jpg'"
+        <img
+          src="/picture1.jpg"
           :alt="film.title"
           class="poster-img"
         />
       </div>
 
       <div class="info-container">
+       <div class="info-container">
         <h2 class="movie-title">{{ film.title }}</h2>
         <p class="movie-genres">{{ film.genre }}, {{ film.year }}, {{ film.country }}</p>
 
