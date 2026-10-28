@@ -3,15 +3,11 @@ use App\Models\Movie;
 use App\Http\Controllers\WatchLaterController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-
-Route::get('/', function () {
-    return Inertia::render('Catalog', [
-        'movies' => Movie::all()
-    ]);
-})->name('home');
-
 use App\Http\Controllers\MovieController;
+
+Route::get('/', [MovieController::class, 'index'])->name('home');
+
+
 
 Route::get('/catalog', [MovieController::class, 'index'])->name('catalog');
 

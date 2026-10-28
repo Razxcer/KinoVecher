@@ -16,7 +16,7 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, приключения, фэнтези', 
                 'year' => 2026, 
                 'country' => 'США', 
-                'poster_url' => 'https://kinoafisha.info',
+                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/5/1/5/8374515/101283994502.jpg',
                 'age_rating' => '12+',
                 'mood' => 'Напряженное'
             ],
@@ -26,7 +26,7 @@ class MovieSeeder extends Seeder
                 'genre' => 'Семейный, фэнтези', 
                 'year' => 2026, 
                 'country' => 'Россия', 
-                'poster_url' => 'https://kinoafisha.info',
+                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/0/2/4/8382420/334539226583.jpg',
                 'age_rating' => '6+',
                 'mood' => 'Веселое'
             ],
@@ -36,7 +36,7 @@ class MovieSeeder extends Seeder
                 'genre' => 'Ужасы', 
                 'year' => 2025, 
                 'country' => 'Таиланд', 
-                'poster_url' => 'https://kinoafisha.info',
+                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/1/8/8/8386881/154654894708.jpg',
                 'age_rating' => '18+',
                 'mood' => 'Напряженное'
             ],
@@ -46,7 +46,7 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, триллер, криминал', 
                 'year' => 2026, 
                 'country' => 'США', 
-                'poster_url' => 'https://kinoafisha.info',
+                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/8/6/7/8380768/816421671980.jpg',
                 'age_rating' => '18+',
                 'mood' => 'Напряженное'
             ],
@@ -56,7 +56,7 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, триллер', 
                 'year' => 2026, 
                 'country' => 'США', 
-                'poster_url' => 'https://kinoafisha.info',
+                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/4/4/5/8385544/147907068542.jpg',
                 'age_rating' => '16+',
                 'mood' => 'Напряженное'
             ],
@@ -66,7 +66,7 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, ужасы, триллер', 
                 'year' => 2026, 
                 'country' => 'США', 
-                'poster_url' => 'https://kinoafisha.info',
+                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/7/0/6/8386607/196249034691.jpg',
                 'age_rating' => '18+',
                 'mood' => 'Напряженное'
             ],
@@ -76,7 +76,7 @@ class MovieSeeder extends Seeder
                 'genre' => 'Исторический', 
                 'year' => 2026, 
                 'country' => 'Россия', 
-                'poster_url' => 'https://kinoafisha.info',
+                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/2/7/6/8382672/230907580767.jpg',
                 'age_rating' => '12+',
                 'mood' => 'Грустное'
             ],
@@ -86,7 +86,7 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, ужасы, детектив', 
                 'year' => 2026, 
                 'country' => 'Южная Корея', 
-                'poster_url' => 'https://kinoafisha.info',
+                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/8/5/9/8385958/829880236233.jpg',
                 'age_rating' => '16+',
                 'mood' => 'Напряженное'
             ],
@@ -96,7 +96,7 @@ class MovieSeeder extends Seeder
                 'genre' => 'Драма, ужасы', 
                 'year' => 2026, 
                 'country' => 'Тайвань', 
-                'poster_url' => 'https://kinoafisha.info',
+                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/0/2/3/8387320/620681945060.jpg',
                 'age_rating' => '18+',
                 'mood' => 'Напряженное'
             ],
@@ -106,9 +106,59 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, драма, исторический', 
                 'year' => 2026, 
                 'country' => 'Германия', 
-                'poster_url' => 'https://kinoafisha.info',
+                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/5/6/8/8386865/810368870391.jpg',
                 'age_rating' => '18+',
                 'mood' => 'Грустное'
+            ],
+            [
+                'title' => 'Мстители: Судный день',
+                'description' => 'Грандиозный супергеройский блокбастер, в котором величайшие герои Земли сталкиваются с новой глобальной угрозой мультивселенной в лице таинственного и могущественного Доктора Дума, чьи планы грозят полным уничтожением привычной реальности.',
+                'genre' => 'Фантастика, боевик, приключения',
+                'year' => 2026,
+                'country' => 'США',
+                'poster_url' => 'https://www.kino-teatr.ru/movie/posters/big/6/4/199846.jpg',
+                'age_rating' => '16+',
+                'mood' => 'Захватывающее'
+            ],
+            [
+                'title' => 'Блэйд',
+                'description' => 'Мрачный мистический экшен о легендарном получеловеке-полувампире, который ведет скрытую многолетнюю войну против кровожадного подполья вампиров, пытающихся захватить власть над человечеством в мегаполисе.',
+                'genre' => 'Ужасы, фантастика, боевик, фэнтези',
+                'year' => 2026,
+                'country' => 'США',
+                'poster_url' => 'https://upload.wikimedia.org/wikipedia/ru/8/88/Blade-poster.jpg?utm_source=ru.wikipedia.org&utm_campaign=index&utm_content=original',
+                'age_rating' => '18+',
+                'mood' => 'Мрачное'
+            ],
+            [
+                'title' => 'Мортал Комбат 2',
+                'description' => 'Продолжение культового боевика по мотивам знаменитой видеоигры. Земные защитники вынуждены отправиться во Внешний Мир, чтобы принять участие в финальном, самом жестоком турнире за судьбу вселенной против безжалостного императора Шао Кана.',
+                'genre' => 'Боевик, фантастика, фэнтези',
+                'year' => 2026,
+                'country' => 'США',
+                'poster_url' => 'https://upload.wikimedia.org/wikipedia/ru/6/63/Mortal_Kombat_2_film_poster.jpg?utm_source=ru.wikipedia.org&utm_campaign=index&utm_content=original',
+                'age_rating' => '18+',
+                'mood' => 'Динамичное'
+            ],
+            [
+                'title' => 'Оружие',
+                'description' => 'Загадочный психологический триллер и хоррор от режиссера Зака Креггера. История разворачивается вокруг таинственных исчезновений в провинциальном городке, которые оказываются связаны со зловещими сверхъестественными силами и древними секретами местных жителей.',
+                'genre' => 'Ужасы, триллер',
+                'year' => 2026,
+                'country' => 'США',
+                'poster_url' => 'https://avatars.mds.yandex.net/get-kinopoisk-image/10812607/6f970367-ac33-4fb2-8560-0a657f95255c/600x900',
+                'age_rating' => '18+',
+                'mood' => 'Тревожное'
+            ],
+            [
+                'title' => 'Судная ночь 6',
+                'description' => 'Продолжение культовой антиутопии о ежегодной двенадцатичасовой анархии. Лео Барнс снова вынужден сражаться за свою жизнь на улицах полностью изменившейся и фрагментированной Америки.',
+                'genre' => 'Ужасы, боевик, триллер, антиутопия',
+                'year' => 2026,
+                'country' => 'США',
+                'poster_url' => 'https://thumb.wikimedia.org/wikipedia/ru/thumb/0/09/%D0%9F%D0%BE%D1%81%D1%82%D0%B5%D1%80_%D1%84%D0%B8%D0%BB%D1%8C%D0%BC%D0%B0_%C2%AB%D0%A1%D1%83%D0%B4%D0%BD%D0%B0%D1%8F_%D0%BD%D0%BE%D1%87%D1%8C_%D0%BD%D0%B0%D0%B2%D1%81%D0%B5%D0%B3%D0%B4%D0%B0%C2%BB.jpg/250px-%D0%9F%D0%BE%D1%81%D1%82%D0%B5%D1%80_%D1%84%D0%B8%D0%BB%D1%8C%D0%BC%D0%B0_%C2%AB%D0%A1%D1%83%D0%B4%D0%BD%D0%B0%D1%8F_%D0%BD%D0%BE%D1%87%D1%8C_%D0%BD%D0%B0%D0%B2%D1%81%D0%B5%D0%B3%D0%B4%D0%B0%C2%BB.jpg?utm_source=ru.wikipedia.org&utm_campaign=index&utm_content=thumbnail',
+                'age_rating' => '18+',
+                'mood' => 'Напряженное'
             ],
         ];
 

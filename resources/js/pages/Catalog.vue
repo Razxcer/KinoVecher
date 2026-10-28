@@ -34,7 +34,7 @@ const currentFilters = ref({
 });
 
 const updateFilters = () => {
-  router.get('/catalog', {
+  router.get('/', {
     search: props.filters?.search || '', // Сохраняем строку поиска из чужой шапки
     genre: currentFilters.value.genre,
     mood: currentFilters.value.mood,

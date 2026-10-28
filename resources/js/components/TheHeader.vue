@@ -1,6 +1,6 @@
 <script setup>
 import { usePage, Link } from '@inertiajs/vue3';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import axios from 'axios';
 import MovieModal from './MovieModal.vue';
 
@@ -12,8 +12,13 @@ const movie = ref(null);
 const isModalOpen = ref(false);
 const searchQuery = ref('');
 
+watch(searchQuery, (newValue, oldValue) => {
+  if(newValue.trim()=="")  router.get('/', { search: newValue }, {
+    preserveState: true // Не перезагружает страницу полностью, если мы уже на /movies
+  });
+})
+
 const handleSearch = () => {
-  if (!searchQuery.value.trim()) return;
 
   router.get('/', { search: searchQuery.value }, {
     preserveState: true // Не перезагружает страницу полностью, если мы уже на /movies

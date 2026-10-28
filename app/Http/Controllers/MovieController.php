@@ -14,8 +14,7 @@ class MovieController extends Controller
             // 1. Ловим поиск из шапки (по названию или описанию)
             ->when($request->input('search'), function ($query, $search) {
                 $query->where(function ($q) use ($search) {
-                    $q->where('title', 'like', "%{$search}%")
-                      ->orWhere('description', 'like', "%{$search}%");
+                    $q->where('title', 'like', "%{$search}%");
                 });
             })
             // 2. Ловим жанр из сайдбара
