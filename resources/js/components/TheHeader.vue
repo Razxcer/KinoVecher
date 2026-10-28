@@ -101,6 +101,7 @@ const fetchRandomMovie = async () => {
         v-if="isModalOpen"
         :film="movie"
         @close="isModalOpen=false"
+        :add-btn="true"
       />
   </header>
 </template>
