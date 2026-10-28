@@ -16,7 +16,9 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, приключения, фэнтези', 
                 'year' => 2026, 
                 'country' => 'США', 
-                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/5/1/5/8374515/101283994502.jpg'
+                'poster_url' => 'https://kinoafisha.info',
+                'age_rating' => '12+',
+                'mood' => 'Напряженное'
             ],
             [
                 'title' => 'Последний богатырь. Колобок', 
@@ -24,7 +26,9 @@ class MovieSeeder extends Seeder
                 'genre' => 'Семейный, фэнтези', 
                 'year' => 2026, 
                 'country' => 'Россия', 
-                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/0/2/4/8382420/334539226583.jpg'
+                'poster_url' => 'https://kinoafisha.info',
+                'age_rating' => '6+',
+                'mood' => 'Веселое'
             ],
             [
                 'title' => 'Дом мертвых',  
@@ -32,7 +36,9 @@ class MovieSeeder extends Seeder
                 'genre' => 'Ужасы', 
                 'year' => 2025, 
                 'country' => 'Таиланд', 
-                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/1/8/8/8386881/154654894708.jpg'
+                'poster_url' => 'https://kinoafisha.info',
+                'age_rating' => '18+',
+                'mood' => 'Напряженное'
             ],
             [
                 'title' => 'Мятеж',  
@@ -40,7 +46,9 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, триллер, криминал', 
                 'year' => 2026, 
                 'country' => 'США', 
-                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/8/6/7/8380768/816421671980.jpg'
+                'poster_url' => 'https://kinoafisha.info',
+                'age_rating' => '18+',
+                'mood' => 'Напряженное'
             ],
             [
                 'title' => 'Курьер',  
@@ -48,7 +56,9 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, триллер', 
                 'year' => 2026, 
                 'country' => 'США', 
-                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/4/4/5/8385544/147907068542.jpg'
+                'poster_url' => 'https://kinoafisha.info',
+                'age_rating' => '16+',
+                'mood' => 'Напряженное'
             ],
             [
                 'title' => 'Натиск',  
@@ -56,7 +66,9 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, ужасы, триллер', 
                 'year' => 2026, 
                 'country' => 'США', 
-                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/7/0/6/8386607/196249034691.jpg'
+                'poster_url' => 'https://kinoafisha.info',
+                'age_rating' => '18+',
+                'mood' => 'Напряженное'
             ],
             [
                 'title' => 'Охота на императора',  
@@ -64,7 +76,9 @@ class MovieSeeder extends Seeder
                 'genre' => 'Исторический', 
                 'year' => 2026, 
                 'country' => 'Россия', 
-                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/2/7/6/8382672/230907580767.jpg'
+                'poster_url' => 'https://kinoafisha.info',
+                'age_rating' => '12+',
+                'mood' => 'Грустное'
             ],
             [
                 'title' => 'Надежда',  
@@ -72,7 +86,9 @@ class MovieSeeder extends Seeder
                 'genre' => 'Боевик, ужасы, детектив', 
                 'year' => 2026, 
                 'country' => 'Южная Корея', 
-                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/8/5/9/8385958/829880236233.jpg'
+                'poster_url' => 'https://kinoafisha.info',
+                'age_rating' => '16+',
+                'mood' => 'Напряженное'
             ],
             [
                 'title' => 'Пункт назначения. Рука смерти',  
@@ -80,15 +96,19 @@ class MovieSeeder extends Seeder
                 'genre' => 'Драма, ужасы', 
                 'year' => 2026, 
                 'country' => 'Тайвань', 
-                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/0/2/3/8387320/620681945060.jpg'
+                'poster_url' => 'https://kinoafisha.info',
+                'age_rating' => '18+',
+                'mood' => 'Напряженное'
             ],
             [
                 'title' => 'Восставший',  
-                'description' => ' — Драматический исторический боевик с Эндрю Гарфилдом в главной роли, повествующий о тяжелой судьбе простого человека в эпоху жестоких войн и восстаний, которому предстоит сделать нелегкий выбор ради свободы и выживания своей семьи.',
+                'description' => 'Драматический исторический боевик с Эндрю Гарфилдом в главной роли, повествующий о тяжелой судьбе простого человека в эпоху жестоких войн и восстаний, которому предстоит сделать нелегкий выбор ради свободы и выживания своей семьи.',
                 'genre' => 'Боевик, драма, исторический', 
                 'year' => 2026, 
                 'country' => 'Германия', 
-                'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/5/6/8/8386865/810368870391.jpg'
+                'poster_url' => 'https://kinoafisha.info',
+                'age_rating' => '18+',
+                'mood' => 'Грустное'
             ],
         ];
 

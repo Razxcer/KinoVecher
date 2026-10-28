@@ -4,20 +4,20 @@ use App\Http\Controllers\WatchLaterController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
 Route::get('/', function () {
     return Inertia::render('Catalog', [
         'movies' => Movie::all()
     ]);
 })->name('home');
 
-Route::get('/catalog', function () {
-    return Inertia::render('Catalog', [
-        'movies' => Movie::all()
-    ]);
-})->name('catalog');
+use App\Http\Controllers\MovieController;
+
+Route::get('/catalog', [MovieController::class, 'index'])->name('catalog');
+
 
 // Route::get('dashboard', function () {
-//     return Inertia::render('Dashboard');
+//     return Inertia::render('Dashboard');ы
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('profile', function () {

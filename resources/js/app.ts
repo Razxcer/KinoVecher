@@ -1,6 +1,6 @@
 import '../css/app.css';
 
-import { createInertiaApp } from '@inertiajs/vue3';
+import { createInertiaApp, router } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
@@ -35,6 +35,9 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+// ГЛОБАЛЬНЫЙ ФИКС ДЛЯ ЧУЖОЙ ШАПКИ: Отдаем router в window, чтобы handleSearch его увидел
+(window as any).router = router;
 
 // This will set light / dark mode on page load...
 initializeTheme();
