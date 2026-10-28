@@ -35,7 +35,7 @@
             <li><span class="label">Год производства:</span> {{ film.year }}</li>
             <li><span class="label">Страна:</span> {{ film.country }}</li>
             <li><span class="label">Жанр:</span> {{ film.genre }}</li>
-            <li><span class="label">Возрастной рейтинг:</span> {{ film.ageRating }}</li>
+            <li><span class="label">Возрастной рейтинг:</span> {{ film.age_rating }}</li>
             <li><span class="label">Оценка:</span> 8/10</li>
           </ul>
         </div>
@@ -55,7 +55,7 @@ const props = defineProps<{
     year: number;
     genre: string;
     country: string;
-    ageRating: string;
+    age_rating: string;
     poster_url?: string;
   };
   addBtn?: boolean; 

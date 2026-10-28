@@ -4,6 +4,7 @@ import { Head, router } from '@inertiajs/vue3';
 import FilterSidebar from '@/components/FilterSidebar.vue';
 import MainLayout from '@/layouts/MainLayout.vue';
 import FilmCard from '@/components/FilmCard.vue';
+import MovieModal from '@/components/MovieModal.vue';
 
 const props = defineProps<{
   movies: Array<{
@@ -49,6 +50,11 @@ const handleFilterChange = (newFilters: { genre: string; mood: string; rating: s
   currentFilters.value = newFilters;
   updateFilters();
 };
+
+const selectedMovie = ref<any>(null)
+const openModal = (movie: any) => {
+  selectedMovie.value = movie
+}
 </script>
 
 <template>
@@ -63,6 +69,13 @@ const handleFilterChange = (newFilters: { genre: string; mood: string; rating: s
             :key="movie.id"
             :film="movie"
             :add-btn="true"
+            @click="openModal(movie)" 
+          />
+          <MovieModal
+            v-if="selectedMovie" 
+            :film="selectedMovie" 
+            @close="selectedMovie = null" 
+            :addBtn="true"
           />
           <div v-if="props.movies.length === 0" class="col-span-5 text-center text-gray-500 py-12">
             Фильмы по выбранным критериям не найдены.

@@ -14,7 +14,7 @@
         <p class="movie-genres">{{ film.genre }}, {{ film.year }}, {{ film.country }}</p>
 
         <div class="footer-info">
-          <span class="age-rating">{{ film.ageRating }}</span>
+          <span class="age-rating">{{ film.age_rating }}</span>
           <div class="rating">
             <span class="star">★</span>
             <span class="score">8/10</span>
@@ -43,7 +43,7 @@ const props = defineProps<{
     year: number;
     genre: string;
     country: string;
-    ageRating: string;
+    age_rating: string;
     poster_url?: string;
   };
   deleteBtn?: boolean;

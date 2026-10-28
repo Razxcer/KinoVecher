@@ -12,6 +12,7 @@ export interface Film {
   year: number;
   genre: string;
   country: string;
+  age_rating: string;
   poster_url?: string;
 }
 
@@ -61,7 +62,7 @@ onUnmounted(() => (document.body.style.overflow = ''));
         v-if="selectedFilm"
         :film="selectedFilm"
         @close="closeModal"
-        @remove="removeFromWatchLater"
+        :delete-btn="true"
       />
   </MainLayout>
 </template>
