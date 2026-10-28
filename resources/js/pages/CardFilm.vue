@@ -8,7 +8,11 @@
         @click="openModal(movie)" 
         class="clickable-card"
       >
-        <FilmCard :film="movie" />
+        <FilmCard 
+        :film="movie" 
+        :addBtn="true" 
+        :deleteBtn="true"
+      />
       </div>
     </div>
 
@@ -17,6 +21,8 @@
       v-if="selectedMovie" 
       :film="selectedMovie" 
       @close="selectedMovie = null" 
+      :addBtn="true" 
+      :deleteBtn="true"
     />
   </div>
 </template>

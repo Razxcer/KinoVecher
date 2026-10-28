@@ -14,12 +14,13 @@
         <p class="movie-genres">{{ film.genre }}, {{ film.year }}, {{ film.country }}</p>
 
         <div class="footer-info">
-          <!-- <span class="age-rating">{{ film.ageRating }}</span> -->
+          <span class="age-rating">{{ film.ageRating }}</span>
           <div class="rating">
             <span class="star">★</span>
             <span class="score">8/10</span>
           </div>
         </div>
+
         <button v-if="addBtn" @click.stop="createWatchLater" class="card-button">
           Посмотрю позже
         </button>
@@ -42,7 +43,7 @@ const props = defineProps<{
     year: number;
     genre: string;
     country: string;
-    // ageRating: string;
+    ageRating: string;
     poster_url?: string;
   };
   deleteBtn?: boolean;
@@ -60,62 +61,82 @@ const deleteWatchLater = () => {
     preserveScroll: true,
   })
 }
-
-
 </script>
 
 <style scoped>
-
 .card-wrapper {
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, sans-serif;
 }
 
 .card {
   background: #bdbdbd;
   border-radius: 24px;
-  padding: 15px;
+  padding: 15px 15px 20px 15px; 
   width: 100%;
-  max-width: 350px;
+  min-height: 600px; 
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .poster-container {
   border-radius: 16px;
   overflow: hidden;
-  margin-bottom: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  height: 360px; 
+  flex-shrink: 0;
+  background-color: #a0a0a0;
 }
 
 .poster-img {
   width: 100%;
+  height: 100%;
+  object-fit: cover; 
   display: block;
 }
 
 .info-container {
   color: #333532;
-  padding: 0 5px;
+  padding: 12px 5px 0 5px; 
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .movie-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
-  margin: 0 0 5px;
+  margin: 0 0 6px;
   line-height: 1.2;
+  color: #333532;
+  height: 48px; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .movie-genres {
-  font-size: 14px;
-  color: #5e5e5e;   /*Немного темнее чем  8E8E8E, чтобы было видно текст*/
-  margin: 0 0 15px;
+  font-size: 15px;
+  color: #5e5e5e;   
+  margin: 0 0 10px;
+  line-height: 1.3;
+  height: 40px; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .footer-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 8px;
+  /* Прижимаем к низу */
+  margin-top: auto; 
 }
 
 .age-rating {
@@ -140,11 +161,25 @@ const deleteWatchLater = () => {
   font-size: 16px;
 }
 
-.card-button{
+.card-button {
   width: 100%;
-  background-color: var(--kino-red);
+  padding: 10px;
+  background-color: var(--kino-red, #b30001); 
+  border: none;
   border-radius: 10px;
-  font-weight: 600;
-  color: var(--kino-black);
+  font-weight: 700;
+  font-size: 18px;
+  color: #bdbdbd; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-top: 5px; 
+}
+
+.card-button:hover {
+  background-color: #d40001;
+  color: #ffffff; 
+  box-shadow: 0 4px 10px rgba(179, 0, 1, 0.4); 
+  transform: translateY(-2px); 
 }
 </style>
