@@ -18,6 +18,7 @@ class MovieSeeder extends Seeder
                 'country' => 'США', 
                 'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/5/1/5/8374515/101283994502.jpg',
                 'age_rating' => '12+',
+                'rating' => '8/10',
                 'mood' => 'Напряженное'
             ],
             [
@@ -28,6 +29,7 @@ class MovieSeeder extends Seeder
                 'country' => 'Россия', 
                 'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/0/2/4/8382420/334539226583.jpg',
                 'age_rating' => '6+',
+                'rating' => '3/10',
                 'mood' => 'Веселое'
             ],
             [
@@ -38,6 +40,7 @@ class MovieSeeder extends Seeder
                 'country' => 'Таиланд', 
                 'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/1/8/8/8386881/154654894708.jpg',
                 'age_rating' => '18+',
+                'rating' => '7/10',
                 'mood' => 'Напряженное'
             ],
             [
@@ -48,6 +51,7 @@ class MovieSeeder extends Seeder
                 'country' => 'США', 
                 'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/8/6/7/8380768/816421671980.jpg',
                 'age_rating' => '18+',
+                'rating' => '6/10',
                 'mood' => 'Напряженное'
             ],
             [
@@ -58,6 +62,7 @@ class MovieSeeder extends Seeder
                 'country' => 'США', 
                 'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/4/4/5/8385544/147907068542.jpg',
                 'age_rating' => '16+',
+                'rating' => '9/10',
                 'mood' => 'Напряженное'
             ],
             [
@@ -68,6 +73,7 @@ class MovieSeeder extends Seeder
                 'country' => 'США', 
                 'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/7/0/6/8386607/196249034691.jpg',
                 'age_rating' => '18+',
+                'rating' => '5/10',
                 'mood' => 'Напряженное'
             ],
             [
@@ -78,6 +84,7 @@ class MovieSeeder extends Seeder
                 'country' => 'Россия', 
                 'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/2/7/6/8382672/230907580767.jpg',
                 'age_rating' => '12+',
+                'rating' => '4/10',
                 'mood' => 'Грустное'
             ],
             [
@@ -88,6 +95,7 @@ class MovieSeeder extends Seeder
                 'country' => 'Южная Корея', 
                 'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/8/5/9/8385958/829880236233.jpg',
                 'age_rating' => '16+',
+                'rating' => '5/10',
                 'mood' => 'Напряженное'
             ],
             [
@@ -98,6 +106,7 @@ class MovieSeeder extends Seeder
                 'country' => 'Тайвань', 
                 'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/0/2/3/8387320/620681945060.jpg',
                 'age_rating' => '18+',
+                'rating' => '6/10',
                 'mood' => 'Напряженное'
             ],
             [
@@ -108,6 +117,7 @@ class MovieSeeder extends Seeder
                 'country' => 'Германия', 
                 'poster_url' => 'https://static.kinoafisha.info/k/movie_posters/1080x1920/upload/movie_posters/5/6/8/8386865/810368870391.jpg',
                 'age_rating' => '18+',
+                'rating' => '8/10',
                 'mood' => 'Грустное'
             ],
             [
@@ -118,6 +128,7 @@ class MovieSeeder extends Seeder
                 'country' => 'США',
                 'poster_url' => 'https://www.kino-teatr.ru/movie/posters/big/6/4/199846.jpg',
                 'age_rating' => '16+',
+                'rating' => '9/10',
                 'mood' => 'Захватывающее'
             ],
             [
@@ -128,6 +139,7 @@ class MovieSeeder extends Seeder
                 'country' => 'США',
                 'poster_url' => 'https://upload.wikimedia.org/wikipedia/ru/8/88/Blade-poster.jpg?utm_source=ru.wikipedia.org&utm_campaign=index&utm_content=original',
                 'age_rating' => '18+',
+                'rating' => '8/10',
                 'mood' => 'Мрачное'
             ],
             [
@@ -138,6 +150,7 @@ class MovieSeeder extends Seeder
                 'country' => 'США',
                 'poster_url' => 'https://upload.wikimedia.org/wikipedia/ru/6/63/Mortal_Kombat_2_film_poster.jpg?utm_source=ru.wikipedia.org&utm_campaign=index&utm_content=original',
                 'age_rating' => '18+',
+                'rating' => '7/10',
                 'mood' => 'Динамичное'
             ],
             [
@@ -148,6 +161,7 @@ class MovieSeeder extends Seeder
                 'country' => 'США',
                 'poster_url' => 'https://avatars.mds.yandex.net/get-kinopoisk-image/10812607/6f970367-ac33-4fb2-8560-0a657f95255c/600x900',
                 'age_rating' => '18+',
+                'rating' => '5/10',
                 'mood' => 'Тревожное'
             ],
             [
@@ -158,6 +172,7 @@ class MovieSeeder extends Seeder
                 'country' => 'США',
                 'poster_url' => 'https://thumb.wikimedia.org/wikipedia/ru/thumb/0/09/%D0%9F%D0%BE%D1%81%D1%82%D0%B5%D1%80_%D1%84%D0%B8%D0%BB%D1%8C%D0%BC%D0%B0_%C2%AB%D0%A1%D1%83%D0%B4%D0%BD%D0%B0%D1%8F_%D0%BD%D0%BE%D1%87%D1%8C_%D0%BD%D0%B0%D0%B2%D1%81%D0%B5%D0%B3%D0%B4%D0%B0%C2%BB.jpg/250px-%D0%9F%D0%BE%D1%81%D1%82%D0%B5%D1%80_%D1%84%D0%B8%D0%BB%D1%8C%D0%BC%D0%B0_%C2%AB%D0%A1%D1%83%D0%B4%D0%BD%D0%B0%D1%8F_%D0%BD%D0%BE%D1%87%D1%8C_%D0%BD%D0%B0%D0%B2%D1%81%D0%B5%D0%B3%D0%B4%D0%B0%C2%BB.jpg?utm_source=ru.wikipedia.org&utm_campaign=index&utm_content=thumbnail',
                 'age_rating' => '18+',
+                'rating' => '4/10',
                 'mood' => 'Напряженное'
             ],
         ];

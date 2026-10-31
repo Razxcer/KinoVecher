@@ -17,7 +17,7 @@
           <span class="age-rating">{{ film.age_rating }}</span>
           <div class="rating">
             <span class="star">★</span>
-            <span class="score">8/10</span>
+            <span class="score">{{ film.rating }}</span>
           </div>
         </div>
 
@@ -44,6 +44,7 @@ const props = defineProps<{
     genre: string;
     country: string;
     age_rating: string;
+    rating: string;
     poster_url?: string;
   };
   deleteBtn?: boolean;
