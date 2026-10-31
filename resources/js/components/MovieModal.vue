@@ -35,6 +35,7 @@
             <li><span class="label">Год производства:</span> {{ film.year }}</li>
             <li><span class="label">Страна:</span> {{ film.country }}</li>
             <li><span class="label">Жанр:</span> {{ film.genre }}</li>
+            <li><span class="label">Настроение:</span> {{ film.mood }}</li>
             <li><span class="label">Возрастной рейтинг:</span> {{ film.age_rating }}</li>
             <li><span class="label">Оценка:</span> {{ film.rating }}</li>
           </ul>
@@ -57,6 +58,7 @@ const props = defineProps<{
     country: string;
     age_rating: string;
     rating: string;
+    mood: string;
     poster_url?: string;
   };
   addBtn?: boolean; 

@@ -11,7 +11,7 @@
 
       <div class="info-container">
         <h2 class="movie-title">{{ film.title }}</h2>
-        <p class="movie-genres">{{ film.genre }}, {{ film.year }}, {{ film.country }}</p>
+        <p class="movie-genres">{{ film.genre }}, {{ film.year }}, {{ film.country }}, {{ film.mood }}</p>
 
         <div class="footer-info">
           <span class="age-rating">{{ film.age_rating }}</span>
@@ -45,6 +45,7 @@ const props = defineProps<{
     country: string;
     age_rating: string;
     rating: string;
+    mood:string;
     poster_url?: string;
   };
   deleteBtn?: boolean;
