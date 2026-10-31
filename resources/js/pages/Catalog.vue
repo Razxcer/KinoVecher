@@ -16,6 +16,7 @@ const props = defineProps<{
     country: string;
     age_rating: string;
     mood: string;
+    rating: string;
     poster_url?: string;
   }>;
  
