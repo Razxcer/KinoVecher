@@ -3,6 +3,7 @@ import { usePage, Link } from '@inertiajs/vue3';
 import { computed, ref, watch } from 'vue';
 import axios from 'axios';
 import MovieModal from './MovieModal.vue';
+import debounce from 'lodash/debounce';
 
 const page = usePage();
 // Проверяем, авторизован ли пользователь
@@ -10,28 +11,40 @@ const isAuth = computed(() => !!page.props.auth.user);
 const favoritesCount = computed(() => page.props.favoritesCount);
 const movie = ref(null);
 const isModalOpen = ref(false);
-const searchQuery = ref('');
+const search = ref('');
 
-watch(searchQuery, (newValue, oldValue) => {
-  if(newValue.trim()=="")  router.get('/', { search: newValue }, {
-    preserveState: true // Не перезагружает страницу полностью, если мы уже на /movies
-  });
-})
+const handleSearch = debounce((value) => {
+  const currentParams = Object.fromEntries(new URLSearchParams(window.location.search));
 
-const handleSearch = () => {
+  const newParams = { ...currentParams };
+  if (value) {
+    newParams.search = value;
+  } else {
+    delete newParams.search; // Если инпут очистили, убираем параметр из URL
+  }
 
-  router.get('/', { search: searchQuery.value }, {
-    preserveState: true // Не перезагружает страницу полностью, если мы уже на /movies
-  });
-};
+  // Отправляем запрос на ту же страницу (каталог)
+  router.get(
+    window.location.pathname, // Текущий URL страницы без параметров
+    newParams,                // Обновленный объект со всеми фильтрами + новым поиском
+    {
+      preserveState: true,    // ВАЖНО: сохраняет состояние компонентов Vue (инпуты не сбросятся)
+      preserveScroll: true,   // Чтобы страница не прыгала вверх при вводе текста
+      replace: true           // Чтобы не забивать историю браузера каждым символом поиска
+    }
+  );
+}, 300); // Задержка 300мс, чтобы запрос шел, когда пользователь закончил ввод
+
+// Следим за изменениями инпута
+watch(search, (newValue) => {
+  handleSearch(newValue);
+});
 
 const fetchRandomMovie = async () => {
   const response = await axios.get('/api/internal/random-movie');
   movie.value = response.data;
   isModalOpen.value = true;
 };
-
-
 
 </script>
 
@@ -54,8 +67,7 @@ const fetchRandomMovie = async () => {
       type="text" 
       placeholder="Поиск фильмов..." 
       class="search-input"
-      v-model="searchQuery"
-      @keydown.enter="handleSearch"
+      v-model="search"
        />
       <!-- Аккуратная SVG лупа -->
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
